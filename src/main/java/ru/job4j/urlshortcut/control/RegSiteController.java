@@ -9,6 +9,7 @@ import ru.job4j.urlshortcut.model.Logins;
 import ru.job4j.urlshortcut.model.RegDTO;
 import ru.job4j.urlshortcut.model.SiteDTO;
 import ru.job4j.urlshortcut.service.LoginService;
+import javax.validation.Valid;
 
 import java.net.URISyntaxException;
 
@@ -22,7 +23,7 @@ public class RegSiteController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<RegDTO> registration(@RequestBody SiteDTO siteDTO) throws URISyntaxException {
+    public ResponseEntity<RegDTO> registration(@Valid @RequestBody SiteDTO siteDTO) throws URISyntaxException {
         String site = siteDTO.getSite();
         boolean flag = loginService.checkSiteReg(site);
         Logins loginsOut = loginService.generateLogin(site);

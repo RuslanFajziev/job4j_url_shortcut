@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import ru.job4j.urlshortcut.model.UrlDTO;
 import ru.job4j.urlshortcut.service.UrlService;
 
@@ -35,6 +36,7 @@ public class StatisticRedirectUrlConroller {
             LOG.info("Output UrlDTO statistic url: {} - find site: {}", url, urlDTO.getUrl());
         } else {
             LOG.info("Output UrlDTO statistic url: {} - site not found", url);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return new ResponseEntity<UrlDTO>(
                 urlDTO,

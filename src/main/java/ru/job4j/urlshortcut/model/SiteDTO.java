@@ -1,8 +1,10 @@
 package ru.job4j.urlshortcut.model;
 
 import java.util.Objects;
+import javax.validation.constraints.*;
 
 public class SiteDTO {
+    @NotBlank(message = "site must be not empty")
     private String site;
 
     public static SiteDTO of(String site) {

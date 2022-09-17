@@ -25,7 +25,7 @@ public class RedirectUrlController {
         Optional<UrlRedirect> url = urlService.findUrlRedirect(code);
         if (url.isEmpty()) {
             LOG.info("Redirect url not found on Code={}", code);
-            // описать исключения для вывода в выхлоп ответа
+            throw new IllegalArgumentException(String.format("Redirect url not found on Code=%s", code));
         }
         String urlRedirect = url.get().getUrlOut();
         LOG.info("Redirect url={} found on Code={} (request count:{})", urlRedirect, code, url.get().getRequestCount());
