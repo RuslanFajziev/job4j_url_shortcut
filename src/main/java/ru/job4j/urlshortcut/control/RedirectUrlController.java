@@ -28,7 +28,7 @@ public class RedirectUrlController {
             throw new IllegalArgumentException(String.format("Redirect url not found on Code=%s", code));
         }
         String urlRedirect = url.get().getUrlOut();
-        LOG.info("Redirect url={} found on Code={} (request count:{})", urlRedirect, code, url.get().getRequestCount());
+        LOG.info("Redirect url={} found on Code={})", urlRedirect, code);
         attributes.addFlashAttribute("flashAttribute", "redirectWithRedirectView");
         attributes.addAttribute("attribute", "redirectWithRedirectView");
         return new RedirectView(urlRedirect);

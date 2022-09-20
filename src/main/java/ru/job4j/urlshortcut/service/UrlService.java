@@ -52,9 +52,8 @@ public class UrlService {
     public Optional<UrlRedirect> findUrlRedirect(String code) {
         Optional<UrlRedirect> optionalUrlRedirect = urlRepository.findByCode(code);
         if (optionalUrlRedirect.isPresent()) {
+            urlRepository.updateReqCountUrl(code);
             UrlRedirect urlRedirect = optionalUrlRedirect.get();
-            urlRedirect.setRequestCount(urlRedirect.getRequestCount() + 1);
-            urlRepository.save(urlRedirect);
             return Optional.of(urlRedirect);
         }
         return optionalUrlRedirect;
